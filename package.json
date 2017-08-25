@@ -1,0 +1,39 @@
+{
+  "name": "node-swagger-template",
+  "version": "0.0.1",
+  "private": true,
+  "description": "New Swagger API Project",
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "main": "app.js",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "es6-promise": "^4.1.1",
+    "express": "^4.12.3",
+    "guid": "0.0.12",
+    "isomorphic-fetch": "^2.2.1",
+    "moment": "^2.18.1",
+    "mongoose": "^4.11.7",
+    "swagger-express-mw": "^0.1.0",
+    "tedious": "^2.0.0",
+    "tedious-connection-pool": "^1.0.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "mocha": "*",
+    "should": "^7.1.0",
+    "supertest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "start_from_docker": "MONGODB_URI='mongodb://mongo/node-swagger-template' node index.js",
+    "swagger-start": "swagger project start",
+    "edit": "swagger project edit",
+    "test": "swagger project test"
+  }
+}
