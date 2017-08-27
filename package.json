@@ -30,7 +30,7 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon app.js --exec babel-node index.js",
     "start_from_docker": "MONGODB_URI='mongodb://mongo/node-swagger-template' node index.js",
     "swagger-start": "swagger project start",
     "edit": "swagger project edit",
