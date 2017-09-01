@@ -2,9 +2,11 @@
 
 var SwaggerExpress = require("swagger-express-mw");
 var express = require("express");
+var cors = require("cors");
 var app = express();
 module.exports = app; // for testing
 
+app.use(cors());
 /** connect to mongodb */
 require("./api/helpers/mongodb");
 
