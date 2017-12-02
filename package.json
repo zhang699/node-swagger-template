@@ -23,6 +23,7 @@
     "tedious-connection-pool": "^1.0.5"
   },
   "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "mocha": "*",
@@ -34,7 +35,8 @@
   },
   "scripts": {
     "start": "nodemon app.js --exec babel-node index.js",
-    "start_from_docker": "MONGODB_URI='mongodb://mongo/node-swagger-template' node index.js",
+    "start_from_docker":
+      "MONGODB_URI='mongodb://mongo/node-swagger-template' node index.js",
     "swagger-start": "swagger project start",
     "edit": "swagger project edit",
     "test": "swagger project test"
