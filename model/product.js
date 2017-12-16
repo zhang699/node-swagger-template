@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-
+import ApplicationError from "./errors/ApplicationError";
 const ProductSchema = new Schema({
   name: {
     type: String,
@@ -19,8 +19,12 @@ ProductSchema.statics.createOne = async function(content) {
   return await product.save();
 };
 ProductSchema.statics.list = async function(query) {
-  console.warn("list,...");
   return await this.find(query);
+};
+ProductSchema.statics.findByName = async function(name) {
+  const product = await this.findOne({ name });
+  ApplicationError.throwIfProductNotFound(product, name);
+  return product;
 };
 
 export const Product = mongoose.model("Product", ProductSchema);

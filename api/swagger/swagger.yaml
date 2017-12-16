@@ -40,6 +40,25 @@ paths:
           description: Get Countries information Success
           schema:
             $ref: "#/definitions/GetCountryResponse"
+  /products/name/{name}:
+    x-swagger-router-controller: product
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Product
+      description: get product by name
+      operationId: findByName
+      parameters:
+        - name: name
+          in: path
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/CommonResult"
   /products:
     x-swagger-router-controller: product
     post:
@@ -89,6 +108,20 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
+  CommonResult:
+    properties:
+      status:
+        type: integer
+      result:
+        type: object
+  CommonListResult:
+    properties:
+      status:
+        type: integer
+      result:
+        type: array
+        items: 
+          type: object
   GetCountryResponse:
     properties:
       name:
