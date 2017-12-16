@@ -1,21 +1,19 @@
-
-
+import { Product } from "../../model/product";
 
 function list(req, res) {
   const { name } = req.query;
-  res.json({
-    message: `you are listing products, the filter name is ${name}`,
+  Product.list({ name }).then(results => {
+    res.json(results);
   });
 }
 
-
 function create(req, res) {
   const productContent = req.body;
-  res.json({
-    message: `you are creating the product, the information is ${productContent}`,
-  })
+  Product.createOne(productContent).then(result => {
+    res.json(result);
+  });
 }
 module.exports = {
   list,
   create
-}
+};
