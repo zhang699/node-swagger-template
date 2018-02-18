@@ -1,11 +1,13 @@
-function getCountry(req, res) {
+import { execute } from '../helpers/api';
+
+function getCountry(req) {
   const countryId = req.swagger.params.id.value || '';
 
-  res.json({
+  return {
     message: `the specific country id is ${countryId}`,
-  });
+  };
 }
 
 module.exports = {
-  getCountry,
+  getCountry: execute(getCountry),
 };

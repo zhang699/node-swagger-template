@@ -31,7 +31,6 @@ SwaggerExpress.create(config, (err, swaggerExpress) => {
 
   // install middleware
   swaggerExpress.register(app);
-
   const port = process.env.PORT || 10010;
   app.listen(port);
 });

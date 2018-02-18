@@ -1,32 +1,23 @@
+import { execute } from '../helpers/api';
+
 import { Product } from '../../model/product';
 
-import { responseToErr, responseToResult } from '../helpers/request';
-
-function list(req, res) {
+async function list(req) {
   const { name } = req.query;
-  Product.list({ name }).then((results) => {
-    responseToResult(res, results);
-  });
+  return Product.list({ name });
 }
 
-function create(req, res) {
+async function create(req) {
   const productContent = req.body;
-  Product.createOne(productContent).then((result) => {
-    responseToResult(res, result);
-  });
+  return Product.createOne(productContent);
 }
-function findByName(req, res) {
+async function findByName(req) {
   const name = req.swagger.params.name.value;
-  Product.findByName(name)
-    .then((result) => {
-      res.json(result);
-    })
-    .catch((err) => {
-      responseToErr(res, err);
-    });
+  return Product.findByName(name);
 }
+
 module.exports = {
-  list,
-  create,
-  findByName,
+  list: execute(list),
+  create: execute(create),
+  findByName: execute(findByName),
 };
