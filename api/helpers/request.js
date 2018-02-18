@@ -1,18 +1,14 @@
-//const request = require('request');
-
-
+// const request = require('request');
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
-
-
 
 function responseToResult(res, data, status) {
   res.json({
     status: status || 0,
     data,
     message: 'ok',
-  })
+  });
 }
 function responseToErr(res, error) {
   res.json({
@@ -23,14 +19,17 @@ function responseToErr(res, error) {
 
 function executeRequest(url, options) {
   options.json = options.json || true;
-  return new Promise(function (resolve, reject) {
-
+  return new Promise((resolve, reject) => {
     let body = options.form;
-    if (options.headers && options.headers['Content-Type'] === 'application/x-www-form-urlencoded') {
+    if (
+      options.headers &&
+      options.headers['Content-Type'] === 'application/x-www-form-urlencoded'
+    ) {
       const urlEncodedrequest = [];
-      for (const key in body) {
+      Object.keys(body).forEach(key => {
         urlEncodedrequest.push(`${key}=${encodeURIComponent(body[key])}`);
-      }
+      });
+
       const requestForm = urlEncodedrequest.reduce((pre, cur) => `${pre}&${cur}`);
       body = requestForm;
     } else {
@@ -43,17 +42,20 @@ function executeRequest(url, options) {
       method: options.method || 'POST',
       headers: options.headers,
       body: options.method === 'GET' ? null : body,
-    }).then((response) => {
-      return options.json ? response.json() : response.text();
-    }, (err) => {
-      console.warn('err', err);
-      reject(err);
-    }).then(jsonResponse => {
-      resolve(jsonResponse);
-    });
-    /*request.post({ 
-      url, 
-      form: options.form, 
+    })
+      .then(
+        response => (options.json ? response.json() : response.text()),
+        err => {
+          console.warn('err', err);
+          reject(err);
+        }
+      )
+      .then(jsonResponse => {
+        resolve(jsonResponse);
+      });
+    /* request.post({
+      url,
+      form: options.form,
       headers: options.headers,
       json: true,
     }, function (err, httpResponse, body) {
@@ -63,10 +65,9 @@ function executeRequest(url, options) {
       } else {
         reject(err);
       }
-    });*/
+    }); */
   });
-};
-
+}
 
 module.exports = {
   executeRequest,
@@ -74,4 +75,4 @@ module.exports = {
   responseToErr,
   OK: 'ok',
   FAIL: 'fail',
-}
+};

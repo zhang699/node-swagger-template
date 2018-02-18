@@ -1,11 +1,11 @@
 function getCountry(req, res) {
-  const countryId = req.swagger.params.id.value || "";
+  const countryId = req.swagger.params.id.value || '';
 
   res.json({
-    message: `the specific country id is ${countryId}`
+    message: `the specific country id is ${countryId}`,
   });
 }
 
 module.exports = {
-  getCountry
+  getCountry,
 };

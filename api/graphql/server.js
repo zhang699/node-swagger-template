@@ -1,10 +1,10 @@
-import express from "express";
-import graphqlHTTP from "express-graphql";
-import { schema, root } from "./schema";
+import express from 'express';
+import graphqlHTTP from 'express-graphql';
+import { schema, root } from './schema';
 
-var app = express();
+const app = express();
 app.use(
-  "/graphql",
+  '/graphql',
   graphqlHTTP({
     graphiql: true,
     schema,
@@ -13,8 +13,8 @@ app.use(
       message: error.message,
       locations: error.locations,
       stack: error.stack,
-      path: error.path
-    })
+      path: error.path,
+    }),
   })
 );
 

@@ -1,13 +1,13 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 
 const CitySchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
-    type: String
-  }
+    type: String,
+  },
 });
 
-export const City = mongoose.model("City", CitySchema);
+export const City = mongoose.model('City', CitySchema);
